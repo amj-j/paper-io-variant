@@ -4,7 +4,7 @@ use Workerman\Connection\TcpConnection;
 use Workerman\Timer;
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once 'classes/Game.php';
+require_once 'Game.php';
 
 $ws_worker = new Worker("websocket://0.0.0.0:2000");
 $ws_worker->count = 1; // 1 proces
