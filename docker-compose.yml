@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080" # Workerman runs on this port
+    command: php /var/www/html/main.php start
+    depends_on:
+      - web
+    networks:
+      - app-network
+
+  web:
+    image: nginx:alpine
+    volumes:
+      - ./client:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:

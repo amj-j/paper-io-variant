@@ -72,7 +72,7 @@ if (endGameModalTarget) {
 }
 
 function connectToGame(name, color) {
-    ws = new WebSocket("ws://127.0.0.1:2000");
+    ws = new WebSocket("ws://localhost:8080");
 
     ws.onopen = function(e) {
         inputs = {
@@ -99,7 +99,7 @@ function connectToGame(name, color) {
             ws = null;
             canvasContext.clearRect(0, 0, canvas.width, canvas.height);
             document.getElementById("endGameModalTitle").innerText = data.message;
-            document.getElementById("endGameModalScore").innerText = "Vaše skóre: " + data.score;
+            document.getElementById("endGameModalScore").innerText = "Your score: " + data.score;
             endGameModalInstance.show();
         } else {
             // Save new players

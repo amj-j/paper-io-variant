@@ -6,7 +6,7 @@ use Workerman\Timer;
 require_once __DIR__ . '/vendor/autoload.php';
 require_once 'Game.php';
 
-$ws_worker = new Worker("websocket://0.0.0.0:2000");
+$ws_worker = new Worker("websocket://0.0.0.0:8080");
 $ws_worker->count = 1; // 1 proces
 
 
@@ -105,7 +105,7 @@ $ws_worker->onWorkerStart = function() use ($game, &$new_players, &$new_player_i
             foreach($dead_players as &$dead_player) {
                 if ($dead_player->getConnection() != null) {
                     $dead_player->getConnection()->send(json_encode([
-                        "message" => "Prehrali ste!",
+                        "message" => "You lost!",
                         "score" => $dead_player->getScore()
                     ]));
                 }
